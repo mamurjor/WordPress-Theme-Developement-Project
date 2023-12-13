@@ -1,5 +1,13 @@
 add_action('after_setup_theme','wplearntheme');
  add_theme_support('post-thumbnails',array('post','service','page'));
+
+ the_post_thumbnail( 'thumbnail' );     // Thumbnail (150 x 150 hard cropped)
+the_post_thumbnail( 'medium' );        // Medium resolution (300 x 300 max height 300px)
+the_post_thumbnail( 'medium_large' );  // Medium Large (added in WP 4.4) resolution (768 x 0 infinite height)
+the_post_thumbnail( 'large' );         // Large resolution (1024 x 1024 max height 1024px)
+the_post_thumbnail( 'full' );   
+
+
   add_action('wp_enqueue_scripts','mywpscritp');
   wp_enqueue_style("unique_id",get_stylesheet_uri());
 
@@ -15,3 +23,76 @@ add_action('after_setup_theme','wplearntheme');
         echo get_template_directory_uri()
 
         echo wp_get_theme()->get('Version');
+
+
+        wp_add_inline_style(
+            'unique_id',
+            'body{ background: red; }'
+           );
+           wp_footer()
+
+           wp_add_inline_script()
+
+           get_theme_file_uri()
+           get_parent_theme_file_uri()
+           get_template_directory_uri()
+           esc_url();
+           get_header()
+           get_sidebar()
+           get_footer()
+           get_template_part()
+           get_permalink()
+           have_posts()
+           the_post()
+           the_title()
+           the_content()
+           the_category();
+            the_author();
+            the_excerpt();
+            the_ID();
+            the_meta();
+
+            the_time();
+
+
+
+            if(have_posts()):
+while(have_posts()): the_post();
+
+
+
+
+get_template_part('template-parts/content',get_post_format());
+
+
+
+endwhile;
+else:
+  _e("kono post nai",'learnwp');
+endif;
+
+
+if(have_posts()):
+// while(have_posts()): the_post();
+
+
+
+
+// get_template_part('template-parts/content',get_post_format());
+
+
+
+// endwhile;
+// else:
+//   _e("kono post nai",'learnwp');
+// endif;
+
+
+<?php  get_sidebar();?>
+
+  <?php //get_template_part('template-parts/content','video');?>
+
+  <?php // get_template_part('template-parts/content','audio');?>
+
+ 
+  <!-- <?php // echo  get_permalink();?> -->

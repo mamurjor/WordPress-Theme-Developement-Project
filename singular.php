@@ -6,7 +6,7 @@ while(have_posts()): the_post();
 
 ?>
 <article>
-    <h1> This is Page Same Design   </h1>
+    <h1> This is Singular Page    </h1>
     <h1> <?php the_title();?> </h1>
   <?php the_time();
   
