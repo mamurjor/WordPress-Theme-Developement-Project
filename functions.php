@@ -8,8 +8,8 @@ if(!function_exists('wplearntheme')){
 
        load_theme_textdomain('learnwp',get_template_directory().'/languages');
 
-        //add_theme_support('post-thumbnails');
-        add_theme_support('post-thumbnails',array('post','service','page'));
+        add_theme_support('post-thumbnails');
+        //add_theme_support('post-thumbnails',array('post','service','page'));
        
         add_theme_support('post-formats',array('aside','gallery','quate','image','video','audio'));
         add_action('wp_enqueue_scripts','mywpscritp');
@@ -114,7 +114,58 @@ if(!function_exists('wplearntheme')){
 
       
          }
+       }       
+      
+       if(!function_exists('mymeta')){
+        function mymeta(){
+            add_meta_box(
+                'hadi_pagla',
+                'Add Icon',
+                'myinputhtml',
+                'mywonlider'
+            );
+        }
        }
+       if(!function_exists('myinputhtml')){
+        function myinputhtml($post){
+
+               $icon= get_post_meta($post->ID,'unique_key',true);
+            ?>
+            <label for="addicon">Add Service Icon </label>
+            <input type="text" name="add_icon" id="add_icon" value="<?php echo $icon;?>" >
+            <?php
+        }
+       }
+
+       add_action('add_meta_boxes','mymeta');
+
+
+        if(!function_exists('mymetasave')){
+            function mymetasave($post_id){
+                update_post_meta(
+                    $post_id,
+                    'unique_key',
+                    $_POST['add_icon']
+                );
+            }
+        }       
+       
+       add_action('save_post','mymetasave');
+ ///$icon= get_post_meta($post->ID,'unique_key',true);
+
+
     }
 }
+
+require get_template_directory()."/inc/custompost/slider.php";
+
+// post 
+// page  
+// Attachment 
+// revision 
+// Nav Menu 
+
+
+
+
 

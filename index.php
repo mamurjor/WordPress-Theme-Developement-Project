@@ -1,8 +1,6 @@
 
 <?php  get_header();?>
 
-
-
 		
 		<!-- Slider Area -->
 		<?php get_template_part('template-parts/slider');?>

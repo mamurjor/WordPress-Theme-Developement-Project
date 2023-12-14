@@ -48,11 +48,11 @@
 											echo get_avatar(get_the_author_meta("ID"),1);
 											?><img src="img/author1.jpg" alt="#">
                     
-                      <?php the_author(); ?>
-                    </a></span>
-											<span class="date"><i class="fa fa-clock-o"></i>
-                    <?php the_date('d M, Y');?>
-                    </span>
+												<?php the_author(); ?>
+												</a></span>
+																		<span class="date"><i class="fa fa-clock-o"></i>
+												<?php the_date('d M, Y');?>
+												</span>
 										</div>
 										<div class="meta-right">
 											<span class="comments"><a href="#"><i class="fa fa-comments"></i>05 Comments</a></span>
@@ -191,22 +191,25 @@
 							<div class="single-widget category">
 								<h3 class="title">Blog Categories</h3>
 								<ul class="categor-list">
-									<?php  
 									
-									$myallcat =get_categories(array(
+								<?php foreach(get_the_category() as $category) {
+									$cat = $category->cat_ID; }?>
 
-										'orderby' => 'name',
-										'order' => 'DSC'
-									));
-
-									foreach($myallcat as $singcat){									
+									<?php $args=array(									
+										    
+										'post_type' => 'post',
+										'category__in' => array($cat),
+									);
+									$wp_query = new WP_Query( $args ); 
+									while($wp_query->have_posts()):
 									?>
-									<li><a href="#"> <?php echo $singcat->name;?></a></li>
+					
+												<li><a href="<?php the_permalink(); ?>"><?php the_category(); ?></a></li>
+														<?php endwhile;?>
+											<?php   ?> 
 									
-								<?php 
+										
 								
-							}
-								?>
 								</ul>
 							</div>
 							<!--/ End Single Widget -->
