@@ -192,21 +192,13 @@
 								<h3 class="title">Blog Categories</h3>
 								<ul class="categor-list">
 									
-								<?php foreach(get_the_category() as $category) {
-									$cat = $category->cat_ID; }?>
-
-									<?php $args=array(									
-										    
-										'post_type' => 'post',
-										'category__in' => array($cat),
-									);
-									$wp_query = new WP_Query( $args ); 
-									while($wp_query->have_posts()):
+								<?php foreach(get_categories() as $singlecate) {									
 									?>
-					
-												<li><a href="<?php the_permalink(); ?>"><?php the_category(); ?></a></li>
-														<?php endwhile;?>
-											<?php   ?> 
+										<li><a href="<?php echo get_category_link($singlecate->term_id);?>"><?php echo  $singlecate->name; ?></a></li>
+												
+												<?php 
+												
+								}?>
 									
 										
 								

@@ -1,4 +1,4 @@
 <?php 
-echo "This is Category";
 
+echo "This Category page Design";
 ?>

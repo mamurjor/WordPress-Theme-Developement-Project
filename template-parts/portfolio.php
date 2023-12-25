@@ -14,38 +14,20 @@
 				<div class="row">
 					<div class="col-lg-12 col-12">
 						<div class="owl-carousel portfolio-slider">
-							<div class="single-pf">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/pf1.jpg" alt="#">
-								<a href="portfolio-details.html" class="btn">View Details</a>
+						<?php 				
+				$myservice=new WP_Query(array(
+				   'post_type'		=> "portfolio"
+				));
+				while($myservice->have_posts()):$myservice->the_post();
+			   ?>
+						<div class="single-pf">
+								<?php the_post_thumbnail()?>
+								<a href="<?php the_permalink()?>" class="btn">View Details</a>
 							</div>
-							<div class="single-pf">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/pf2.jpg" alt="#">
-								<a href="portfolio-details.html" class="btn">View Details</a>
-							</div>
-							<div class="single-pf">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/pf3.jpg" alt="#">
-								<a href="portfolio-details.html" class="btn">View Details</a>
-							</div>
-							<div class="single-pf">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/pf4.jpg" alt="#">
-								<a href="portfolio-details.html" class="btn">View Details</a>
-							</div>
-							<div class="single-pf">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/pf1.jpg" alt="#">
-								<a href="portfolio-details.html" class="btn">View Details</a>
-							</div>
-							<div class="single-pf">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/pf2.jpg" alt="#">
-								<a href="portfolio-details.html" class="btn">View Details</a>
-							</div>
-							<div class="single-pf">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/pf3.jpg" alt="#">
-								<a href="portfolio-details.html" class="btn">View Details</a>
-							</div>
-							<div class="single-pf">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/pf4.jpg" alt="#">
-								<a href="portfolio-details.html" class="btn">View Details</a>
-							</div>
+							<?php 
+					endwhile;
+					
+					?>
 						</div>
 					</div>
 				</div>

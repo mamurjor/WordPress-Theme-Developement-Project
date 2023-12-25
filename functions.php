@@ -1,12 +1,19 @@
 <?php 
+    
+
+  
+
+
+
 
 add_action('after_setup_theme','wplearntheme');
 
 if(!function_exists('wplearntheme')){
     function wplearntheme(){
 
-
-       load_theme_textdomain('learnwp',get_template_directory().'/languages');
+ 
+        
+        load_theme_textdomain('learnwp',get_template_directory().'/languages');
 
         add_theme_support('post-thumbnails');
         //add_theme_support('post-thumbnails',array('post','service','page'));
@@ -116,41 +123,7 @@ if(!function_exists('wplearntheme')){
          }
        }       
       
-       if(!function_exists('mymeta')){
-        function mymeta(){
-            add_meta_box(
-                'hadi_pagla',
-                'Add Icon',
-                'myinputhtml',
-                'mywonlider'
-            );
-        }
-       }
-       if(!function_exists('myinputhtml')){
-        function myinputhtml($post){
-
-               $icon= get_post_meta($post->ID,'unique_key',true);
-            ?>
-            <label for="addicon">Add Service Icon </label>
-            <input type="text" name="add_icon" id="add_icon" value="<?php echo $icon;?>" >
-            <?php
-        }
-       }
-
-       add_action('add_meta_boxes','mymeta');
-
-
-        if(!function_exists('mymetasave')){
-            function mymetasave($post_id){
-                update_post_meta(
-                    $post_id,
-                    'unique_key',
-                    $_POST['add_icon']
-                );
-            }
-        }       
-       
-       add_action('save_post','mymetasave');
+      
  ///$icon= get_post_meta($post->ID,'unique_key',true);
 
 
@@ -158,6 +131,63 @@ if(!function_exists('wplearntheme')){
 }
 
 require get_template_directory()."/inc/custompost/slider.php";
+require get_template_directory()."/inc/custompost/count-down.php";
+require get_template_directory()."/inc/custompost/servicesec.php";
+
+require get_template_directory()."/inc/custompost/myallpostmeta.php";
+require get_template_directory()."/inc/custompost/schedule.php";
+
+require get_template_directory()."/inc/custompost/portfolio.php";
+require get_template_directory()."/inc/custompost/client.php";
+
+require get_template_directory()."/inc/custompost/hero.php";
+require get_template_directory()."/inc/themeoption/codestar-framework.php";
+require get_template_directory()."/inc/themeoption/samples/mythemeoption.php";
+
+add_action('init','myallmenus');
+
+if(!function_exists('myallmenus')){
+
+// Class add in li 
+
+function mymamaliclass($classes, $item, $args) {
+    if(isset($args->add_li_class)) {
+        $classes[] = $args->add_li_class;
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'mymamaliclass', 1, 3);
+
+// add Class in a 
+function mymamaaiclass($atts) {
+    $atts['class'] = "hadijaman";
+    return $atts;
+  }
+  add_filter( 'nav_menu_link_attributes', 'mymamaaiclass');
+
+
+
+    add_filter('wp_nav_menu_objects','myactiveclass');
+
+    function myactiveclass($menu_items){
+        $menu_items[1]->classes[] ="active";
+        return $menu_items;
+
+    }
+
+
+    function myallmenus(){ 
+        register_nav_menus(array(
+            'top-menu' => __('Top Menu','learnwp'),
+            'primary' => __('Primary','learnwp'),
+            'footer-one' => __('Footer One','learnwp'),
+            'Footer-two' => __('Footer Two','learnwp'),
+        ));
+    }
+}
+
+
+
 
 // post 
 // page  

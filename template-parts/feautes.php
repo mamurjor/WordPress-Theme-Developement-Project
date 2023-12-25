@@ -10,39 +10,29 @@
 					</div>
 				</div>
 				<div class="row">
+				<?php 
+				
+				 $myservice=new WP_Query(array(
+					'post_type'		=> "mywonlider"
+				 ));
+
+				 while($myservice->have_posts()):$myservice->the_post();
+				?>
 					<div class="col-lg-4 col-12">
 						<!-- Start Single features -->
 						<div class="single-features">
 							<div class="signle-icon">
-								<i class="icofont icofont-ambulance-cross"></i>
+								<i class="<?php echo get_post_meta(get_the_ID(),'unique_key',true);?>"></i>
 							</div>
-							<h3>Emergency Help</h3>
-							<p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
+							<a href="<?php the_permalink()?>"><h3><?php esc_html(the_title());?></h3> </a>
+							<p><?php esc_html(the_excerpt());?></p>
 						</div>
 						<!-- End Single features -->
 					</div>
-					<div class="col-lg-4 col-12">
-						<!-- Start Single features -->
-						<div class="single-features">
-							<div class="signle-icon">
-								<i class="icofont icofont-medical-sign-alt"></i>
-							</div>
-							<h3>Enriched Pharmecy</h3>
-							<p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
-						</div>
-						<!-- End Single features -->
-					</div>
-					<div class="col-lg-4 col-12">
-						<!-- Start Single features -->
-						<div class="single-features last">
-							<div class="signle-icon">
-								<i class="icofont icofont-stethoscope"></i>
-							</div>
-							<h3>Medical Treatment</h3>
-							<p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
-						</div>
-						<!-- End Single features -->
-					</div>
+					<?php 
+					endwhile;
+					
+					?>
 				</div>
 			</div>
 		</section>
