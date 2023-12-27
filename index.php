@@ -1,5 +1,8 @@
 
-<?php  get_header();?>
+<?php  get_header();
+echo  do_shortcode('[passcode]');
+
+?>
 
 		
 		<!-- Slider Area -->
