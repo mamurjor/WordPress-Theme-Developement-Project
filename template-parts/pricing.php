@@ -10,90 +10,65 @@
 					</div>
 				</div>
 				<div class="row">
+				<?php 
+				
+				$myservice=new WP_Query(array(
+				   'post_type'		=> "mprice"
+				));
+
+				while($myservice->have_posts()):$myservice->the_post();
+
+				$iconclass=get_post_meta(get_the_ID(),'iconclass',true);
+				$package_price=get_post_meta(get_the_ID(),'package_price',true);
+				$bookingurl=get_post_meta(get_the_ID(),'bookingurl',true);
+
+				$myfaturelist=get_post_meta(get_the_ID(),'yourprefix_group_demo',true);
+			  
+				//var_dump($myfaturelist);
+
+			
+			
+			  ?>
+
 					<!-- Single Table -->
 					<div class="col-lg-4 col-md-12 col-12">
 						<div class="single-table">
 							<!-- Table Head -->
 							<div class="table-head">
 								<div class="icon">
-									<i class="icofont icofont-ui-cut"></i>
+									<i class="<?php echo $iconclass;?>"> </i>
 								</div>
-								<h4 class="title">Plastic Suggery</h4>
+								<h4 class="title"><?php the_title();?></h4>
 								<div class="price">
-									<p class="amount">$199<span>/ Per Visit</span></p>
+									<p class="amount"> <?php echo $package_price;?>/</p>
 								</div>	
 							</div>
 							<!-- Table List -->
 							<ul class="table-list">
-								<li><i class="icofont icofont-ui-check"></i>Lorem ipsum dolor sit</li>
-								<li><i class="icofont icofont-ui-check"></i>Cubitur sollicitudin fentum</li>
-								<li class="cross"><i class="icofont icofont-ui-close"></i>Nullam interdum enim</li>
-								<li class="cross"><i class="icofont icofont-ui-close"></i>Donec ultricies metus</li>
-								<li class="cross"><i class="icofont icofont-ui-close"></i>Pellentesque eget nibh</li>
+								<?php 
+								
+								foreach($myfaturelist as $singlfeature){
+									
+								
+								?>
+								<li><i class="icofont icofont-ui-check"></i><?php echo  $singlfeature['title'];?></li>
+							<?php 
+							
+								}
+							
+							?>
 							</ul>
 							<div class="table-bottom">
-								<a class="btn" href="#">Book Now</a>
+								<a class="btn" href="<?php echo $bookingurl;?>">Book Now</a>
 							</div>
 							<!-- Table Bottom -->
 						</div>
 					</div>
 					<!-- End Single Table-->
-					<!-- Single Table -->
-					<div class="col-lg-4 col-md-12 col-12">
-						<div class="single-table">
-							<!-- Table Head -->
-							<div class="table-head">
-								<div class="icon">
-									<i class="icofont icofont-tooth"></i>
-								</div>
-								<h4 class="title">Teeth Whitening</h4>
-								<div class="price">
-									<p class="amount">$299<span>/ Per Visit</span></p>
-								</div>	
-							</div>
-							<!-- Table List -->
-							<ul class="table-list">
-								<li><i class="icofont icofont-ui-check"></i>Lorem ipsum dolor sit</li>
-								<li><i class="icofont icofont-ui-check"></i>Cubitur sollicitudin fentum</li>
-								<li><i class="icofont icofont-ui-check"></i>Nullam interdum enim</li>
-								<li class="cross"><i class="icofont icofont-ui-close"></i>Donec ultricies metus</li>
-								<li class="cross"><i class="icofont icofont-ui-close"></i>Pellentesque eget nibh</li>
-							</ul>
-							<div class="table-bottom">
-								<a class="btn" href="#">Book Now</a>
-							</div>
-							<!-- Table Bottom -->
-						</div>
-					</div>
-					<!-- End Single Table-->
-					<!-- Single Table -->
-					<div class="col-lg-4 col-md-12 col-12">
-						<div class="single-table">
-							<!-- Table Head -->
-							<div class="table-head">
-								<div class="icon">
-									<i class="icofont-heart-beat"></i>
-								</div>
-								<h4 class="title">Heart Suggery</h4>
-								<div class="price">
-									<p class="amount">$399<span>/ Per Visit</span></p>
-								</div>	
-							</div>
-							<!-- Table List -->
-							<ul class="table-list">
-								<li><i class="icofont icofont-ui-check"></i>Lorem ipsum dolor sit</li>
-								<li><i class="icofont icofont-ui-check"></i>Cubitur sollicitudin fentum</li>
-								<li><i class="icofont icofont-ui-check"></i>Nullam interdum enim</li>
-								<li><i class="icofont icofont-ui-check"></i>Donec ultricies metus</li>
-								<li><i class="icofont icofont-ui-check"></i>Pellentesque eget nibh</li>
-							</ul>
-							<div class="table-bottom">
-								<a class="btn" href="#">Book Now</a>
-							</div>
-							<!-- Table Bottom -->
-						</div>
-					</div>
-					<!-- End Single Table-->
+					<?php 
+					endwhile;
+					
+					?>
 				</div>	
 			</div>	
 		</section>

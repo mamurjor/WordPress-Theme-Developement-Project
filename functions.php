@@ -136,6 +136,7 @@ require get_template_directory()."/inc/custompost/servicesec.php";
 
 require get_template_directory()."/inc/custompost/myallpostmeta.php";
 require get_template_directory()."/inc/custompost/schedule.php";
+require get_template_directory()."/inc/custompost/mprice.php";
 
 require get_template_directory()."/inc/custompost/portfolio.php";
 require get_template_directory()."/inc/custompost/client.php";
@@ -147,6 +148,15 @@ require get_template_directory()."/inc/mymenu.php";
 
 require get_template_directory()."/inc/tgm/class-tgm-plugin-activation.php";
 require get_template_directory()."/inc/tgm/myactiveplugin.php";
+
+require get_template_directory()."/inc/cmb/init.php";
+
+
+require get_template_directory()."/inc/cmb/myslider.php";
+
+
+require get_template_directory()."/inc/wonwidget.php";
+
 // post 
 // page  
 // Attachment 
